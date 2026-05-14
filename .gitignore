@@ -1,0 +1,25 @@
+# OpenCode
+
+# Session data, history, databases
+.opencode/
+.opencode/
+
+# Credentials - NEVER commit
+auth.json
+
+# Config with secrets (if accidentally added)
+*.jsonc
+
+# Package files (if using local plugins)
+node_modules/
+package-lock.json
+*.lock
+
+# Environment files with secrets
+.env
+.env.local
+*.env
+
+# IDE/TUI state
+tui.json
+*.bak
