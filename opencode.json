@@ -4,8 +4,7 @@
     "minimax": {
       "npm": "@ai-sdk/anthropic",
       "options": {
-        "baseURL": "https://api.minimax.io/anthropic/v1",
-        "apiKey": "YOUR_MINIMAX_API_KEY"
+        "baseURL": "https://api.minimax.io/anthropic/v1"
       },
       "models": {
         "MiniMax-M2.7": {
@@ -24,8 +23,7 @@
     "deepseek": {
       "npm": "@ai-sdk/deepseek",
       "options": {
-        "baseURL": "https://api.deepseek.com",
-        "apiKey": "YOUR_DEEPSEEK_API_KEY"
+        "baseURL": "https://api.deepseek.com"
       }
     }
   },
@@ -44,7 +42,6 @@
         "minimax-coding-plan-mcp"
       ],
       "environment": {
-        "MINIMAX_API_KEY": "YOUR_MINIMAX_API_KEY",
         "MINIMAX_API_HOST": "https://api.minimax.io"
       }
     },
