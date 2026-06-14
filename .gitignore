@@ -9,6 +9,7 @@ auth.json
 
 # Config with secrets (if accidentally added)
 *.jsonc
+opencode.json
 
 # Package files (if using local plugins)
 node_modules/
