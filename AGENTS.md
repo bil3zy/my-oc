@@ -47,6 +47,7 @@ Before building anything, ensure alignment. The most common failure mode is misa
 | `/improve-codebase-architecture` | `improve-codebase-architecture` |
 | `/zoom-out` | Context expansion via `ctx_expand` |
 | `/prototype` | Exploratory coding + `todowrite` |
+| `/lean-ux-canvas` | `lean-ux-canvas` skill — UX framing, assumption surfacing, experiment design |
 
 ## Anti-Patterns to Avoid
 
@@ -62,6 +63,21 @@ For ANY feature request or implementation task:
 2. Then use `writing-plans` to structure the approach
 3. Create `todowrite` todos as vertical slices
 4. Use `verification-before-completion` before marking done
+
+## Agent Ownership Rules
+
+### Matt-QA: Sole Test File Authority
+
+**Matt-QA** (`agent/matt-qa.md`) is the **only** agent authorized to create, modify, or delete test files. This is enforced by permission rules in `opencode.json`.
+
+| Rule | Detail |
+|------|--------|
+| **Who** | Only `Matt-QA` sub-agent |
+| **Scope** | Write, review, debug, and modify tests |
+| **Enforcement** | `edit` permission denies test file patterns for all other agents |
+| **Summoning** | Implementation agents invoke via `task` tool after feature code is complete |
+
+**All agents** may read test files and run test suites. **No agent except Matt-QA** may edit test files.
 
 ## Context Reset Rule
 

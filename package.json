@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@opencode-ai/plugin": "*",
+    "opencode-ralph-loop": "^1.0.8"
+  }
+}

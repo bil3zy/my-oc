@@ -3,6 +3,14 @@
 ## Overview
 Playwright-based browser automation for testing the Angular web app (bahu-front) on localhost:4200. Uses native OpenCode MCP Playwright tools.
 
+## Resource Guidelines
+
+**Always use minimal CPU and RAM** when running browser automation:
+- Limit workers: `workers: 1` in playwright config
+- Add minimal launch args: `--disable-gpu`, `--disable-dev-shm-usage`, `--no-sandbox`, `--disable-setuid-sandbox`
+- Use `--single-process` where possible to limit process creation
+- Only increase resources when tests timeout or fail due to resource constraints
+
 ## Dev Server
 ```bash
 cd /Users/bahu/bahu-project/bahu-front && npm start

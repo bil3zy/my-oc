@@ -5,38 +5,46 @@ Personal OpenCode configuration with custom skills, agents, and settings.
 ## What's Included
 
 - **Custom Skills** - Topic-specific AI workflows (TDD, diagnose, triage, etc.)
-- **Custom Agents** - matt-mentor, general, plan agents with Matt Pocock methodology
+- **Custom Agents** - matt-mentor, general, plan, ralph, matt-qa agents
+- **Plugins** - Research agent, superpowers, ralph-loop, notifier
 - **Configuration** - OpenCode settings with multi-provider support
 
 ## Quick Setup
 
-### 1. Clone or Copy
+### Prerequisites
+
+- OpenCode installed
+- Node.js (for npm plugins)
+- Python 3 (for research agent hooks)
+
+### Setup on New Machine
 
 ```bash
-# Clone to config directory
-git clone git@github.com:bil3zy/my-oc.git ~/.config/opencode
+# 1. Clone repo
+git clone <repo-url> ~/my-oc
 
-# Or copy files manually
-cp opencode.json ~/.config/opencode/opencode.json
-cp -r opencode/skills/ ~/.config/opencode/skills/
-cp AGENTS.md ~/.config/opencode/AGENTS.md
+# 2. Install npm dependencies
+cd ~/my-oc && npm install
+
+# 3. Backup existing config (if any)
+mv ~/.config/opencode ~/.config/opencode.bak
+
+# 4. Symlink config directory
+ln -s ~/my-oc ~/.config/opencode
+
+# 5. Edit opencode.json with your API keys
+# Replace YOUR_MINIMAX_API_KEY and YOUR_DEEPSEEK_API_KEY
 ```
 
-### 2. Set API Keys
+### Set API Keys
 
-Set via environment variables:
+Edit `opencode.json` and replace placeholder API keys with real ones:
+- `YOUR_MINIMAX_API_KEY` - Minimax API key
+- `YOUR_DEEPSEEK_API_KEY` - DeepSeek API key
 
-```bash
-# In your shell profile (~/.zshrc, ~/.bashrc)
-export ANTHROPIC_API_KEY="your-anthropic-key"
-export OPENAI_API_KEY="your-openai-key"
-export DEEPSEEK_API_KEY="your-deepseek-key"
-export MINIMAX_API_KEY="your-minimax-key"
-```
+Or set via environment variables if supported by your provider.
 
-Or edit `opencode.json` directly (not recommended for shared repos).
-
-### 3. Verify
+### Verify
 
 ```bash
 opencode --version
@@ -64,13 +72,39 @@ opencode --version
 ```
 my-oc/
 ├── .gitignore           # Ignores session data, credentials
-├── AGENTS.md           # Custom agent definitions
-├── opencode.json       # Config (API keys via env vars)
+├── AGENTS.md           # Agent definitions and workflow rules
+├── opencode.json       # Config (placeholder API keys)
+├── package.json        # NPM dependencies for plugins
+├── plugins/            # Local plugins
+│   ├── research-agent.js
+│   └── superpowers.js
+├── agent/              # Agent definitions
+│   ├── matt-qa.md
+│   └── ralph.md
 └── opencode/
-    └── skills/        # Custom skills
+    └── skills/         # Custom skills
         ├── tdd/
         ├── diagnose/
         └── ...
+```
+
+## Maintenance
+
+### Updating Config
+
+Since `~/.config/opencode` is a symlink to `~/my-oc`, any edit to config files happens in the repo. Commit and push changes:
+
+```bash
+cd ~/my-oc
+git add -A
+git commit -m "describe change"
+git push
+```
+
+On another machine, pull and re-symlink:
+
+```bash
+cd ~/my-oc && git pull && npm install
 ```
 
 ## Troubleshooting
@@ -81,17 +115,18 @@ Check skill paths in `opencode.json`:
 ```json
 {
   "skills": {
-    "paths": [".opencode/skills"]
+    "paths": ["opencode/skills"]
   }
 }
 ```
 
+**Plugin errors?**
+
+Run `npm install` in `~/my-oc/` to ensure dependencies are installed.
+
 **API key errors?**
 
-Ensure environment variables are set:
-```bash
-echo $ANTHROPIC_API_KEY
-```
+Replace placeholder values in `opencode.json` with real API keys.
 
 ## Adding New Skills
 
@@ -102,12 +137,8 @@ echo $ANTHROPIC_API_KEY
    name: my-skill
    description: What this skill does
    ---
-   
+
    ## What I do
    ...
    ```
 3. Commit and push
-
-## License
-
-MIT

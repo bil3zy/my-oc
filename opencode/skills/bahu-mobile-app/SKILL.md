@@ -8,6 +8,14 @@ description: Playwright-based browser automation for the Ionic 8 + Angular 18 mo
 ## Overview
 Playwright-based browser automation for testing the Ionic 8 + Angular 18 mobile app on iOS/Android without needing native simulators. Uses localhost:8100 (Angular dev server) for fast iteration.
 
+## Resource Guidelines
+
+**Always use minimal CPU and RAM** when running browser automation:
+- Limit workers: `workers: 1` in playwright config
+- Add minimal launch args: `--disable-gpu`, `--disable-dev-shm-usage`, `--no-sandbox`, `--disable-setuid-sandbox`
+- Use `--single-process` where possible to limit process creation
+- Only increase resources when tests timeout or fail due to resource constraints
+
 ## Key Learned Details
 
 ### Dev Server
