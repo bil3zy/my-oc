@@ -62,6 +62,16 @@ Confirm:
 
 Do not proceed until you reproduce the bug.
 
+### Pinpoint exact issue and files with user
+
+Before moving to hypotheses, confirm alignment:
+
+1. **Restate** the exact bug in your own words — ask user to confirm you understand correctly
+2. **List exact files** involved (with line numbers) based on your reproduction
+3. **Get explicit user approval** that both the issue understanding and file list are correct
+
+Misalignment here wastes phases 3–6. Fixing wrong file → wrong fix. If user corrects either understanding or file scope, loop back to Phase 1/2 before proceeding.
+
 ## Phase 3 — Hypothesise
 
 Generate **3–5 ranked hypotheses** before testing any of them. Single-hypothesis generation anchors on the first plausible idea.

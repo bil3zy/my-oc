@@ -107,3 +107,20 @@ After all tests pass, look for [refactor candidates](refactoring.md):
 [ ] Code is minimal for this test
 [ ] No speculative features added
 ```
+
+## Resource Optimization
+
+When running tests, use minimal CPU/RAM to prevent hangs:
+
+```bash
+# Minimal Jasmine/Karma (single browser, no watchers)
+npm test -- --browsers=ChromeHeadless --watch=false --code-coverage=false
+
+# Single run, no watch
+ng test --include="**/component.spec.ts" --no-watch --browsers=ChromeHeadless
+```
+
+For flaky/timeout tests, add timeout override:
+```bash
+npm test -- --timeout=60000
+```
