@@ -26,23 +26,24 @@ git clone <repo-url> ~/my-oc
 # 2. Install npm dependencies
 cd ~/my-oc && npm install
 
-# 3. Backup existing config (if any)
+# 3. Create config with your API keys
+cp opencode.json.template opencode.json
+# Edit opencode.json → replace YOUR_MINIMAX_API_KEY, YOUR_DEEPSEEK_API_KEY
+
+# 4. Backup existing config (if any)
 mv ~/.config/opencode ~/.config/opencode.bak
 
-# 4. Symlink config directory
+# 5. Symlink config directory
 ln -s ~/my-oc ~/.config/opencode
-
-# 5. Edit opencode.json with your API keys
-# Replace YOUR_MINIMAX_API_KEY and YOUR_DEEPSEEK_API_KEY
 ```
 
 ### Set API Keys
 
-Edit `opencode.json` and replace placeholder API keys with real ones:
+Edit `opencode.json` (gitignored, safe for real keys):
 - `YOUR_MINIMAX_API_KEY` - Minimax API key
 - `YOUR_DEEPSEEK_API_KEY` - DeepSeek API key
 
-Or set via environment variables if supported by your provider.
+Template at `opencode.json.template` has placeholders for the repo.
 
 ### Verify
 
